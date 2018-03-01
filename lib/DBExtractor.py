@@ -75,7 +75,8 @@ class DBExtractor(object):
         object_data = None
         while not object_data:
             try:
-                self.cursor.execute("select * from {} where {} = '{}'".format(table, id_field, object_id))
+                self.cursor.execute("select * from {}.{} where {} = '{}'".format(self.schema, table,
+                                                                                 id_field, object_id))
                 object_data = self.cursor
             except Exception as error:
                 # what's the best option to handle errors when the connection is lost?
